@@ -22,20 +22,32 @@
     --red: #e04459;
 }
 
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
 
 html {
+    width: 100%;
+    max-width: 100%;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
-    margin: 0;
+    width: 100%;
+    max-width: 100%;
     min-width: 320px;
     min-height: 100vh;
 
+    margin: 0;
+
     color: var(--text);
+
+    overflow-x: hidden;
 
     background:
         radial-gradient(
@@ -87,7 +99,13 @@ body::before {
 }
 
 #root {
+    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
 }
 
 /* =========================================================
@@ -97,7 +115,10 @@ body::before {
 .navbar {
     position: sticky;
     top: 0;
+
     z-index: 100;
+
+    width: 100%;
 
     background: rgba(5, 5, 7, 0.72);
 
@@ -116,14 +137,19 @@ body::before {
     min-height: 74px;
 
     margin: 0 auto;
+
     padding: 0 32px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    gap: 20px;
 }
 
 .logo {
+    min-width: 0;
+
     color: #ffffff;
 
     text-decoration: none;
@@ -133,6 +159,8 @@ body::before {
 
     letter-spacing: -0.7px;
 
+    white-space: nowrap;
+
     transition:
         transform 0.25s ease,
         opacity 0.25s ease;
@@ -140,13 +168,17 @@ body::before {
 
 .logo:hover {
     opacity: 0.9;
+
     transform: translateY(-1px);
 }
 
 .nav-links {
     display: flex;
     align-items: center;
+
     gap: 5px;
+
+    flex-shrink: 0;
 }
 
 .nav-links a {
@@ -160,6 +192,8 @@ body::before {
     padding: 10px 16px;
 
     border-radius: 10px;
+
+    white-space: nowrap;
 
     transition:
         color 0.2s ease,
@@ -185,12 +219,12 @@ main {
 
     width: min(1450px, 100%);
 
+    max-width: 100%;
+
     margin: 0 auto;
 
     padding: 72px 32px 90px;
 }
-
-/* giant cinematic glow */
 
 main::before {
     content: "";
@@ -202,6 +236,8 @@ main::before {
 
     width: 650px;
     height: 420px;
+
+    max-width: 100%;
 
     background:
         radial-gradient(
@@ -224,15 +260,11 @@ main::before {
 main > h1 {
     position: relative;
 
-    margin: 0 0 34px;
-
     max-width: 850px;
 
-    font-size: clamp(
-        42px,
-        5.5vw,
-        70px
-    );
+    margin: 0 0 34px;
+
+    font-size: clamp(42px, 5.5vw, 70px);
 
     line-height: 0.98;
 
@@ -258,9 +290,9 @@ main > h1 {
 
     text-shadow:
         0 0 45px rgba(124, 92, 255, 0.12);
-}
 
-/* small cinematic line */
+    overflow-wrap: anywhere;
+}
 
 main > h1::after {
     content: "";
@@ -297,6 +329,7 @@ form {
     gap: 10px;
 
     width: min(850px, 100%);
+    max-width: 100%;
 
     margin-bottom: 18px;
 
@@ -319,6 +352,7 @@ form {
 input {
     flex: 1;
 
+    width: 100%;
     min-width: 0;
 
     padding: 14px 16px;
@@ -426,25 +460,32 @@ button:disabled {
     margin-bottom: 42px;
 
     flex-wrap: wrap;
+
+    width: 100%;
+    max-width: 100%;
 }
 
 select {
     appearance: auto;
 
     min-width: 165px;
+    max-width: 100%;
 
     padding: 12px 38px 12px 15px;
 
     border: 1px solid rgba(255, 255, 255, 0.09);
+
     border-radius: 10px;
 
     background: #17171d;
+
     color: #ffffff;
 
     font-size: 14px;
     font-weight: 600;
 
     cursor: pointer;
+
     outline: none;
 
     color-scheme: dark;
@@ -457,6 +498,7 @@ select {
 
 select:hover {
     border-color: rgba(139, 92, 246, 0.45);
+
     transform: translateY(-1px);
 }
 
@@ -469,14 +511,19 @@ select:focus {
 
 select option {
     background: #17171d;
+
     color: #ffffff;
 }
+
 /* =========================================================
    MOVIE GRID
 ========================================================= */
 
 .movie-grid {
     display: grid;
+
+    width: 100%;
+    max-width: 100%;
 
     grid-template-columns:
         repeat(5, minmax(0, 1fr));
@@ -490,6 +537,9 @@ select option {
 
 .movie-card {
     position: relative;
+
+    min-width: 0;
+    width: 100%;
 
     overflow: hidden;
 
@@ -526,12 +576,15 @@ select option {
         0 0 35px rgba(124, 92, 255, 0.10);
 }
 
-/* poster */
+/* =========================================================
+   POSTER
+========================================================= */
 
 .movie-card img {
     display: block;
 
     width: 100%;
+    max-width: 100%;
 
     aspect-ratio: 2 / 3;
 
@@ -549,8 +602,6 @@ select option {
         brightness(1.08)
         saturate(1.08);
 }
-
-/* cinematic poster fade */
 
 .movie-card::after {
     content: "";
@@ -573,13 +624,13 @@ select option {
         );
 }
 
-/* no poster */
-
 .no-poster {
     display: flex;
 
     align-items: center;
     justify-content: center;
+
+    width: 100%;
 
     aspect-ratio: 2 / 3;
 
@@ -602,6 +653,8 @@ select option {
 .movie-info {
     position: relative;
 
+    min-width: 0;
+
     padding: 16px;
 
     background:
@@ -622,6 +675,9 @@ select option {
     line-height: 1.35;
 
     letter-spacing: -0.2px;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .movie-info a {
@@ -636,17 +692,15 @@ select option {
     font-size: 13px;
 
     line-height: 1.4;
-}
 
-/* rating */
+    overflow-wrap: anywhere;
+}
 
 .movie-info p:first-of-type {
     color: #ffd35a;
 
     font-weight: 700;
 }
-
-/* wishlist button */
 
 .movie-info button {
     width: 100%;
@@ -694,11 +748,16 @@ select option {
 
     gap: 18px;
 
+    width: 100%;
+    max-width: 100%;
+
     margin-top: 50px;
 
     padding-top: 25px;
 
     border-top: 1px solid rgba(255, 255, 255, 0.055);
+
+    flex-wrap: wrap;
 }
 
 .pagination span {
@@ -707,6 +766,8 @@ select option {
     font-size: 14px;
 
     font-weight: 650;
+
+    text-align: center;
 }
 
 .pagination button {
@@ -746,10 +807,17 @@ main > p {
    MOVIE DETAILS
 ========================================================= */
 
+.movie-details {
+    width: 100%;
+    max-width: 100%;
+}
+
 .movie-details > a {
     display: inline-flex;
 
     align-items: center;
+
+    max-width: 100%;
 
     margin-bottom: 30px;
 
@@ -775,7 +843,10 @@ main > p {
 .details-container {
     display: grid;
 
-    grid-template-columns: 350px 1fr;
+    width: 100%;
+    max-width: 100%;
+
+    grid-template-columns: minmax(0, 350px) minmax(0, 1fr);
 
     gap: 60px;
 
@@ -783,13 +854,12 @@ main > p {
 }
 
 .details-container > img {
-    width: 100%;
+    display: block;
 
+    width: 100%;
     max-width: 350px;
 
     border-radius: 17px;
-
-    display: block;
 
     border: 1px solid rgba(255, 255, 255, 0.10);
 
@@ -799,6 +869,8 @@ main > p {
 }
 
 .details-info {
+    min-width: 0;
+
     padding-top: 4px;
 }
 
@@ -806,6 +878,9 @@ main > p {
     margin-bottom: 18px;
 
     font-size: clamp(34px, 5vw, 58px);
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .details-info > p {
@@ -814,6 +889,9 @@ main > p {
     color: #a5a5b0;
 
     line-height: 1.7;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .details-info h2 {
@@ -843,23 +921,23 @@ main > p {
     right: 24px;
     bottom: 24px;
 
-    z-index: 1000;
+    z-index: 99999;
+
+    max-width: calc(100vw - 28px);
 
     padding: 15px 21px;
 
     border-radius: 12px;
 
-    background:
-        rgba(24, 24, 31, 0.92);
+    background: #18181f;
 
     color: #ffffff;
 
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(139, 92, 246, 0.45);
 
     box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.45);
-
-    backdrop-filter: blur(15px);
+        0 20px 50px rgba(0, 0, 0, 0.55),
+        0 0 25px rgba(139, 92, 246, 0.15);
 
     font-size: 14px;
 
@@ -891,17 +969,23 @@ main > p {
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — TABLET / SMALL LAPTOP
 ========================================================= */
 
 @media (max-width: 1200px) {
+
     .movie-grid {
         grid-template-columns:
             repeat(4, minmax(0, 1fr));
     }
 }
 
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
 @media (max-width: 950px) {
+
     main {
         padding: 55px 24px 70px;
     }
@@ -912,30 +996,67 @@ main > p {
     }
 
     .details-container {
-        grid-template-columns: 280px 1fr;
+        grid-template-columns:
+            minmax(0, 280px)
+            minmax(0, 1fr);
 
         gap: 35px;
     }
 }
 
+/* =========================================================
+   RESPONSIVE — SMALL TABLET / LARGE PHONE
+========================================================= */
+
 @media (max-width: 700px) {
+
     .navbar-container {
+        width: 100%;
+
         min-height: 66px;
 
         padding: 0 18px;
+
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 19px;
+
+        min-width: 0;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .nav-links {
+        flex-shrink: 0;
+    }
+
+    .nav-links a {
+        padding: 8px 9px;
+
+        font-size: 12px;
     }
 
     main {
+        width: 100%;
+        max-width: 100%;
+
         padding: 45px 18px 55px;
     }
 
     main > h1 {
+        max-width: 100%;
+
         font-size: 43px;
 
         letter-spacing: -2px;
     }
 
     .movie-grid {
+        width: 100%;
+
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
@@ -943,6 +1064,9 @@ main > p {
     }
 
     .details-container {
+        width: 100%;
+        max-width: 100%;
+
         grid-template-columns: 1fr;
 
         gap: 30px;
@@ -955,15 +1079,26 @@ main > p {
     }
 }
 
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
 @media (max-width: 550px) {
+
+    /* NAVBAR */
+
     .navbar-container {
         min-height: 62px;
 
-        padding: 0 14px;
+        padding: 0 12px;
+
+        gap: 8px;
     }
 
     .logo {
-        font-size: 17px;
+        font-size: 16px;
+
+        white-space: nowrap;
     }
 
     .nav-links {
@@ -971,17 +1106,27 @@ main > p {
     }
 
     .nav-links a {
-        padding: 8px 9px;
+        padding: 8px 7px;
 
         font-size: 12px;
+
+        white-space: nowrap;
     }
 
+
+    /* MAIN */
+
     main {
+        width: 100%;
+        max-width: 100%;
+
         padding: 38px 14px 45px;
     }
 
     main > h1 {
-        font-size: 37px;
+        max-width: 100%;
+
+        font-size: clamp(32px, 10vw, 37px);
 
         letter-spacing: -1.8px;
 
@@ -996,27 +1141,51 @@ main > p {
         margin-top: 17px;
     }
 
+
+    /* SEARCH */
+
     form {
+        width: 100%;
+        max-width: 100%;
+
         flex-direction: column;
 
         padding: 6px;
+    }
+
+    form input {
+        width: 100%;
+        min-width: 0;
     }
 
     form button {
         width: 100%;
     }
 
+
+    /* FILTERS */
+
     .filters {
+        width: 100%;
+
         flex-direction: column;
 
         margin-bottom: 30px;
     }
 
-    select {
+    .filters select {
         width: 100%;
+
+        min-width: 0;
     }
 
+
+    /* MOVIE GRID */
+
     .movie-grid {
+        width: 100%;
+        max-width: 100%;
+
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
@@ -1024,31 +1193,50 @@ main > p {
     }
 
     .movie-card {
+        width: 100%;
+        min-width: 0;
+
         border-radius: 13px;
     }
 
     .movie-info {
+        min-width: 0;
+
         padding: 11px;
     }
 
     .movie-info h3 {
         font-size: 14px;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
     .movie-info p {
         font-size: 11px;
+
+        overflow-wrap: anywhere;
     }
 
     .movie-info button {
+        width: 100%;
+
         padding: 10px 6px;
 
         font-size: 12px;
     }
 
+
+    /* PAGINATION */
+
     .pagination {
-        gap: 9px;
+        width: 100%;
+
+        gap: 8px;
 
         margin-top: 35px;
+
+        flex-wrap: wrap;
     }
 
     .pagination button {
@@ -1061,22 +1249,88 @@ main > p {
 
     .pagination span {
         font-size: 12px;
+
+        text-align: center;
+    }
+
+
+    /* DETAILS */
+
+    .details-container {
+        width: 100%;
+        max-width: 100%;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .details-container > img {
+        width: 100%;
+
+        max-width: 290px;
+
+        margin: 0 auto;
+    }
+
+    .details-info {
+        width: 100%;
+
+        min-width: 0;
     }
 
     .details-info h1 {
         font-size: 34px;
+
+        overflow-wrap: anywhere;
     }
+
+    .details-info > p {
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
+    }
+
+
+    /* TOAST */
 
     .toast {
         left: 14px;
         right: 14px;
+
         bottom: 14px;
+
+        max-width: none;
 
         text-align: center;
     }
 }
 
+/* =========================================================
+   RESPONSIVE — VERY SMALL PHONES
+========================================================= */
+
 @media (max-width: 380px) {
+
+    .navbar-container {
+        padding: 0 9px;
+    }
+
+    .logo {
+        font-size: 14px;
+    }
+
+    .nav-links a {
+        padding: 7px 5px;
+
+        font-size: 11px;
+    }
+
+    main {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .movie-grid {
         gap: 9px;
     }
@@ -1085,7 +1339,31 @@ main > p {
         padding: 9px;
     }
 
+    .movie-info h3 {
+        font-size: 13px;
+    }
+
+    .movie-info p {
+        font-size: 10px;
+    }
+
     .movie-info button {
+        padding: 9px 5px;
+
+        font-size: 11px;
+    }
+
+    .pagination {
+        gap: 6px;
+    }
+
+    .pagination button {
+        min-width: 75px;
+
+        padding: 9px 7px;
+    }
+
+    .pagination span {
         font-size: 11px;
     }
 }
@@ -1096,11 +1374,13 @@ main > p {
 
 .modal-overlay {
     position: fixed;
+
     inset: 0;
 
     z-index: 2000;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -1116,6 +1396,8 @@ main > p {
 
 .confirm-modal {
     width: min(440px, 100%);
+
+    max-width: 100%;
 
     padding: 28px;
 
@@ -1144,6 +1426,8 @@ main > p {
     color: #ffffff;
 
     font-size: 22px;
+
+    overflow-wrap: anywhere;
 }
 
 .confirm-modal p {
@@ -1160,6 +1444,8 @@ main > p {
     color: #a6a6b1;
 
     line-height: 1.6;
+
+    overflow-wrap: anywhere;
 }
 
 .confirm-modal strong {
@@ -1220,17 +1506,34 @@ main > p {
 @keyframes modalSlideIn {
     from {
         opacity: 0;
-        transform: translateY(12px) scale(0.97);
+
+        transform:
+            translateY(12px)
+            scale(0.97);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0)
+            scale(1);
     }
 }
 
+/* =========================================================
+   MODAL MOBILE
+========================================================= */
+
 @media (max-width: 550px) {
+
+    .modal-overlay {
+        padding: 14px;
+    }
+
     .confirm-modal {
+        width: 100%;
+
         padding: 23px;
 
         border-radius: 15px;
@@ -1245,13 +1548,15 @@ main > p {
     }
 }
 
-/* =========================
+/* =========================================================
    PREMIUM HOME BACKGROUND
-   ========================= */
+========================================================= */
 
 .home-page {
     position: relative;
+
     min-height: calc(100vh - 70px);
+
     overflow: hidden;
 
     background:
@@ -1278,34 +1583,39 @@ main > p {
         );
 }
 
-/* Large soft cinematic light */
 .home-page::before {
     content: "";
+
     position: absolute;
 
     width: 900px;
     height: 500px;
+
+    max-width: 100%;
 
     top: -260px;
     left: 50%;
 
     transform: translateX(-50%);
 
-    background: radial-gradient(
-        ellipse,
-        rgba(139, 92, 246, 0.20) 0%,
-        rgba(109, 76, 190, 0.08) 35%,
-        transparent 72%
-    );
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(139, 92, 246, 0.20) 0%,
+            rgba(109, 76, 190, 0.08) 35%,
+            transparent 72%
+        );
 
     filter: blur(35px);
+
     pointer-events: none;
 }
 
-/* Cinematic side lighting + vignette */
 .home-page::after {
     content: "";
+
     position: absolute;
+
     inset: 0;
 
     background:
@@ -1328,8 +1638,8 @@ main > p {
     pointer-events: none;
 }
 
-/* Keep Home content above background */
 .home-page > * {
     position: relative;
+
     z-index: 1;
 }
